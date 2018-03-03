@@ -101,4 +101,4 @@ def m1Videos(request):
 	print(frm, upto)	
 	print(vid_list)
 	return render(request, 'MSR/method1.html', {'vid': vid_list, 
-		'brk': range(6, totalVid+1, 6), 'pages': range(1, pages+1, 1)})
+		'brk': range(6, totalVid+1, 6), 'pages': range(1, int(pages)+1, 1)})
