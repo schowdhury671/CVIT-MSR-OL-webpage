@@ -15,12 +15,24 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Justin <muypicky@gmail.com>'
 
+ADMINS = (
+    ('Admin', EMAIL_HOST_USER),
+)
+MANAGERS = ADMINS
+SECRET_KEY = os.environ.get('SECRET_KEY', '#*c3tj407t2_*3co@@s2g@g&y@i16bk1x(ndr=jv9#wdr+6_^+')  
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#*c3tj407t2_*3co@@s2g@g&y@i16bk1x(ndr=jv9#wdr+6_^+'
+# SECRET_KEY = '#*c3tj407t2_*3co@@s2g@g&y@i16bk1x(ndr=jv9#wdr+6_^+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -82,6 +94,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# add this
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
