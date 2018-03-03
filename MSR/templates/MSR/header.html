@@ -57,7 +57,7 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li class="active" style="cursor: pointer;"><a href="/MSR/home/">{% csrf_token %}Home</a></li>
+	        <li class="active" style="cursor: pointer;"><a href="/MSR/home">{% csrf_token %}Home</a></li>
 	        <li style="cursor: pointer;"><a onclick="rawVideos()">Original Videos</a></li>
 	        <li style="cursor: pointer;"><a onclick="existingVideos()">Existing Results</a></li>
 	        <li style="cursor: pointer;"><a onclick="method1()">Method-1 Results</a></li>
@@ -124,7 +124,7 @@
 			var vn = $('#vno').val();
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/addVideos/",
+	            url: "/MSR/addVideos",
 	            data: { 
 	                'vidNo' : vn,
 	            },
@@ -136,7 +136,7 @@
 			var vn = $('#m1').val();
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/addM1Videos/",
+	            url: "/MSR/addM1Videos",
 	            data: { 
 	                'vidNo' : vn,
 	            },
@@ -164,7 +164,7 @@
 		function existingVideos() {
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/rawVideos/",
+	            url: "/MSR/rawVideos",
 	            data: { 
 	                'vidCat' : 'OL',
 	                'page' : '1',
@@ -176,7 +176,7 @@
 		function method1() {
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/m1Videos/",
+	            url: "/MSR/m1Videos",
 	            data: { 
 	                'page' : '1',
 	            },
@@ -191,7 +191,7 @@
 		function paginateRaw(value) {
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/rawVideos/",
+	            url: "/MSR/rawVideos",
 	            data: { 
 	                'vidCat' : 'Raw',
 	                'page' : value,
@@ -203,7 +203,7 @@
 		function paginateExisting(value) {
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/rawVideos/",
+	            url: "/MSR/rawVideos",
 	            data: { 
 	                'vidCat' : 'OL',
 	                'page' : value,
