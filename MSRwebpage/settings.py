@@ -39,7 +39,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEBUG = False
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['https://msresearch.herokuapp.com/','.msresearch.com']
+ALLOWED_HOSTS = ['https://msresearch.herokuapp.com/']
 
 
 # Application definition
