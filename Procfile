@@ -1,1 +1,1 @@
-web: gunicorn MSRwebpage.wsgi
+web: gunicorn MSRwebpage.wsgi --log-file -
