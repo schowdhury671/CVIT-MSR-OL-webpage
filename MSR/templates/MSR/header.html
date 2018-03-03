@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>MSR</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script
+			  src="http://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- <script src="http://preon.iiit.ac.in/~ranajit_saha/paging.js"></script> -->
+	<style>
+		/* Remove the navbar's default margin-bottom and rounded borders */
+		.navbar {
+			margin-bottom: 0;
+			border-radius: 0;
+		}
+
+		/* Add a gray background color and some padding to the footer */
+		footer {
+			background-color: #f2f2f2;
+			padding: 25px;
+		}
+
+		.carousel-inner img {
+			width: 100%; /* Set width to 100% */
+			margin: auto;
+			min-height:200px;
+		}
+
+		/* Hide the carousel text when the screen is less than 600 pixels wide */
+		@media (max-width: 600px) {
+			.carousel-caption {
+			  display: none;
+			}
+		}
+		textarea {
+		   resize: none;
+		}
+	</style>
+	{% load staticfiles %}
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">CVIT</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active" style="cursor: pointer;"><a href="/MSR/home/">{% csrf_token %}Home</a></li>
+	        <li style="cursor: pointer;"><a onclick="rawVideos()">Original Videos</a></li>
+	        <li style="cursor: pointer;"><a onclick="existingVideos()">Existing Results</a></li>
+	        <li style="cursor: pointer;"><a onclick="method1()">Method-1 Results</a></li>
+	        
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+
+	</div>
+
+	
+		
+	<div id="content">
+	   {% block content %}
+	   {% endblock %}	
+	</div>
+
+                            
+	<footer class="container-fluid ">
+	  <span class="text-right" style="float: right">Developed by CVIT, IIIT-H</span>
+	  <span>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			Admin
+		</button>
+	  </span>
+	</footer>
+	<!-- Modal -->
+ 	<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h3 class="modal-title">Admin Page</h3>
+	        <h4 style="color: red">*Do not manipulate this if you are not admin</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="container">
+				<span class="text-left">
+					<input type="number" placeholder="Video number" id="vno">
+					<button class="btn btn-default btn-sm" onclick="addVideos()">Add in DB</button>
+				</span>
+				<span class="text-left">
+					<input type="number" placeholder="Video number" id="m1">
+					<button class="btn btn-default btn-sm" onclick="m1Done()">Method-1 Done</button>
+				</span>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<script type="text/javascript">
+		function addVideos() {
+			var vn = $('#vno').val();
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/addVideos/",
+	            data: { 
+	                'vidNo' : vn,
+	            },
+	            success: addSuccess,
+	            dataType: 'text'
+	        });
+		}
+		function m1Done() {
+			var vn = $('#m1').val();
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/addM1Videos/",
+	            data: { 
+	                'vidNo' : vn,
+	            },
+	            success: addSuccess,
+	            dataType: 'text'
+	        });
+		}
+		function addSuccess(data, textStatus, jqXHR) {
+			alert(data)
+			$('#vno').val('');
+			$('#m1').val('');
+		}
+		function rawVideos() {
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/rawVideos/",
+	            data: { 
+	                'vidCat' : 'Raw',
+	                'page' : '1',
+	            },
+	            success: vidSuccess,
+	            dataType: 'html'
+	        });
+		}
+		function existingVideos() {
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/rawVideos/",
+	            data: { 
+	                'vidCat' : 'OL',
+	                'page' : '1',
+	            },
+	            success: vidSuccess,
+	            dataType: 'html'
+	        });
+		}
+		function method1() {
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/m1Videos/",
+	            data: { 
+	                'page' : '1',
+	            },
+	            success: vidSuccess,
+	            dataType: 'html'
+	        });
+		}
+		function vidSuccess(data, textStatus, jqXHR) {
+			$('#content').html('');
+		    $('#content').html(data);
+		}
+		function paginateRaw(value) {
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/rawVideos/",
+	            data: { 
+	                'vidCat' : 'Raw',
+	                'page' : value,
+	            },
+	            success: vidSuccess,
+	            dataType: 'html'
+	        });
+		}
+		function paginateExisting(value) {
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/rawVideos/",
+	            data: { 
+	                'vidCat' : 'OL',
+	                'page' : value,
+	            },
+	            success: vidSuccess,
+	            dataType: 'html'
+	        });
+		}
+	</script>
+</body>
+
+</html>

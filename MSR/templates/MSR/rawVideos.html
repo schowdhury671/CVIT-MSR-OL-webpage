@@ -1,0 +1,28 @@
+<div class="row container-fluid">
+  <h2 style="margin-left: 30px; color: blue">Original Videos</h2>
+</div>
+<div class="row container-fluid" style="margin: 5%">
+  {% for v in vid %}
+    <div class="col-md-2">
+      <figure>
+        <a href="http://preon.iiit.ac.in/~ranajit_saha/Videos/RawVideos/R{{v}}.mp4" target="_blank">
+          <img src="http://preon.iiit.ac.in/~ranajit_saha/frames/R{{v}}.jpg" style="height: 50%; width: 50%; min-width: 50px; min-height: 50px" alt="image"></img>
+        </a>
+        <figcaption style=" font-size: large;"><strong>Video-{{v}}</strong></figcaption>
+      </figure>
+    </div>
+    {% if loop.index in brk %}
+      <br>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div class="container-fluid" style="text-align: center;">
+  <ul class="pagination pagination-lg">
+  {% for p in pages %}
+    <li class="page-item"><a class="page-link" href="#" onclick="paginateRaw({{p}})">{{p}}</a></li>
+  {% endfor %}
+</ul>
+</div>
+
+

@@ -1,0 +1,51 @@
+{% extends "MSR/header.html" %}
+{% block content %}
+{% load static %}
+<div class="container text-center" style="padding-top:10px">
+		<div class="jumbotron jumbotron-fluid alert alert-primary">
+			<div class="container ">
+				<h1 class="display-4" style="color: red">Microsoft Research</h1><br>
+			</div>
+	 	</div>
+	  
+		<div class="row"><strong><h1 style="color: blue">Search the videos here</h1></strong></div>
+		<div class="row container-fluid" style="padding-top: 2%">
+			{% csrf_token %}
+			<div class="col-md-10">
+				<input class="form-control form-control-lg" type="text" placeholder="Enter the video number" id="searchBar">
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-success" onclick="search()"><strong>Search</strong></button>
+			</div>
+		</div>
+		<div class="row container-fluid" style="padding-top: 2%" id="searchResults">
+			
+		</div>
+	</div><br>
+<!-- <a href="http://preon.iiit.ac.in/~sanjoy_chowdhury/Videos/OfficeLensVideos/OL1.mp4" id="existingVid">OL1</a> -->
+
+	<script type="text/javascript">
+		// var url = "http://preon.iiit.ac.in/~sanjoy_chowdhury/Videos/"
+		function search() {
+			var vidName = $('#searchBar').val();
+			// $('#existingVid').attr("href",url+"OfficeLensVideos/OL10.mp4");
+			if (isNaN(vidName)) {alert('Enter a number'); $('#searchBar').val(''); return;}
+			$.ajax({
+	            type: "GET",
+	            url: "/MSR/search/",
+	            data: { 
+	                'vidName' : vidName,
+	            },
+	            success: searchSuccess,
+	            dataType: 'html'
+	        });
+		}
+		function searchSuccess(data, textStatus, jqXHR) {
+			$('#searchResults').html('');
+		    $('#searchResults').html(data);
+		}
+		$(document).ready(function(){
+			$('#searchBar').val('')
+		})
+	</script>
+{% endblock %}

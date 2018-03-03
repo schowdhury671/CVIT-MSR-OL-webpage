@@ -1,0 +1,22 @@
+{% extends "MSR/base.html" %}
+{% block content %}
+<div class="container">
+<h2>Microsoft Research</h2>
+<h3>Login here</h3>
+
+<form action="/MSR/login/" method="post">
+{% csrf_token %}
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <br>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">Login</button>
+
+  </div>
+
+</form>
+</div>
+{% endblock %}
