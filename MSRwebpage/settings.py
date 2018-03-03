@@ -40,7 +40,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEBUG = False
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['msresearch.herokuapp.com/']
+ALLOWED_HOSTS = ['.msresearch.herokuapp.com/']
 
 
 # Application definition
@@ -148,6 +148,7 @@ LOGIN_REDIRECT_URL = 'home'
 STATIC_URL = '/static/'
 
 #Production
+'''
 CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "https://"
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -168,7 +169,7 @@ SECURE_FRAME_DENY               = True
 # SECURE_HSTS_SECONDS             = None
 # SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 # SECURE_FRAME_DENY               = False
-
+'''
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
