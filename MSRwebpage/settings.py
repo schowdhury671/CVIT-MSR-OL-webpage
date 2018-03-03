@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#*c3tj407t2_*3co@@s2g@g&y@i16bk1x(ndr=jv9#wdr+6_^+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://msresearch.herokuapp.com/','.msresearch.com']
 
 
 # Application definition
