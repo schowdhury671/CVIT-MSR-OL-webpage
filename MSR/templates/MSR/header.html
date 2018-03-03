@@ -63,7 +63,7 @@
 	        <li style="cursor: pointer;"><a onclick="method1()">Method-1 Results</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav" style="float: right">
-	      	<li style="cursor: pointer;"><a href="/MSR/logout" data-toggle="modal" data-target="#exampleModal"  class="navbar-nav pull-right">Admin</a></li>
+	      	<li style="cursor: pointer;"><a href="" data-toggle="modal" data-target="#exampleModal"  class="navbar-nav pull-right">Admin</a></li>
 	      	<!-- <li style="cursor: pointer; float: right;"><a href="/MSR/logmeout/" class="navbar-nav pull-right">Log Out</a></li> -->
           </ul>
 	    </div>
@@ -152,7 +152,7 @@
 		function rawVideos() {
 			$.ajax({
 	            type: "GET",
-	            url: "/MSR/rawVideos/",
+	            url: "/MSR/rawVideos",
 	            data: { 
 	                'vidCat' : 'Raw',
 	                'page' : '1',
