@@ -68,7 +68,7 @@ def rawVideos(request):
 	upto = frm + 18
 	if upto > totalVid:
 		upto = totalVid
-	vid_list = list(range(frm, upto))
+	vid_list = list(range(frm, upto+1))
 	pages = totalVid / 18
 	if totalVid % 18 != 0:
 		pages += 1
