@@ -89,10 +89,21 @@ WSGI_APPLICATION = 'MSRwebpage.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'dch9rpb2534keu',
+        'USER': 'pnhmazilcbhezu',
+        'PASSWORD': 'f2cab7657a4fb020eb5612f05cd37b082ffb827e416ed1df65ca1167783c9884',
+        'HOST': 'postgres://pnhmazilcbhezu:f2cab7657a4fb020eb5612f05cd37b082ffb827e416ed1df65ca1167783c9884@ec2-54-243-31-34.compute-1.amazonaws.com:5432/dch9rpb2534keu',
+        'PORT': '5432',
     }
 }
 
