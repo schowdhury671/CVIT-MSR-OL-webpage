@@ -15,6 +15,7 @@ def login_user(request):
         username = request.POST['uname']
         password = request.POST['psw']
         user = authenticate(username=username, password=password)
+	user2 = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
                 login(request, user)
